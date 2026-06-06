@@ -1,5 +1,7 @@
 # GreenBox — Trò chơi mô phỏng dòng tiền 12 tháng
 
+**🎮 Chơi thử (live):** https://game-buoi-2.vercel.app
+
 Một web game React dạy founder startup về **kế hoạch tài chính**: bạn điều hành một
 nông trại rau hữu cơ giao hộp rau theo tuần qua 12 tháng. Bài học cốt lõi —
 **lãi trên sổ sách ≠ dòng tiền thực**: một dự án có lãi cả năm vẫn có thể "chết"

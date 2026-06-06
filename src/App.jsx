@@ -49,9 +49,10 @@ function project(d) {
   const mRev = annualRev / 12;
   const wShare = ch.w, rShare = 1 - ch.w;
 
-  const mg = MANGO[d.mango] || MANGO.moderate;
-  const mango = (m) => mg.dist ? mg.total * (mg.dist[m] || 0) : mg.total / 12;
-  const totalMango = mg.total;
+  // Chưa quyết định mở rộng (trước T4) → chưa phát sinh chi phí trồng trọt mở rộng
+  const mg = d.mango ? MANGO[d.mango] : null;
+  const mango = (m) => (mg ? (mg.dist ? mg.total * (mg.dist[m] || 0) : mg.total / 12) : 0);
+  const totalMango = mg ? mg.total : 0;
 
   const green = d.green === "yes";
   const greenOut = (m) => (green && m === 2 ? 40 : 0);
@@ -124,7 +125,7 @@ export default function App() {
   const [crisis, setCrisis] = useState(false);
 
   const P = useMemo(() => {
-    if (!d.channel || !d.mango) return null;
+    if (!d.channel) return null; // tính dòng tiền ngay khi đã chọn chiến lược bán
     return project(d);
   }, [d]);
 
@@ -209,9 +210,9 @@ export default function App() {
         )}
 
         {/* ================= PLAY ================= */}
-        {phase === "play" && P && (
+        {phase === "play" && (
           <>
-            <HUD P={P} month={month} cur={cur} awaiting={awaitingDecision} d={d} />
+            {P && <HUD P={P} month={month} cur={cur} awaiting={awaitingDecision} d={d} />}
 
             {/* --- Quyết định: kênh bán (T1) --- */}
             {needChannel && (

@@ -1,0 +1,40 @@
+/* Reset & nền toàn trang — màu kem MCG "Forest & Moss" */
+:root {
+  --gb-cream: #f6f2e9;
+  --gb-ink: #22302a;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+}
+
+html {
+  /* Cuộn mượt, ngăn nảy ngang trên mobile */
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--gb-cream);
+  color: var(--gb-ink);
+  font-family: "Be Vietnam Pro", system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Lưới 2 cột — tự xếp chồng trên màn hình hẹp (điện thoại) */
+.gb-grid2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+@media (max-width: 560px) {
+  .gb-grid2 {
+    grid-template-columns: 1fr;
+  }
+}
